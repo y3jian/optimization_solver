@@ -1,8 +1,9 @@
+import pulp
 from pulp import LpProblem, LpMinimize, LpVariable, LpBinary, lpSum, LpInteger, PULP_CBC_CMD
 
 # Sets
 plants = ['Waterloo', 'Kingston']
-dcs = ['Saskatoon', 'Edmonton', 'Calgary', 'Hamilton', 'Moncton', 'Montreal']
+dcs = ['Saskatoon', 'Edmonton', 'Thunder Bay', 'Hamilton', 'Moncton', 'Montreal']
 stores = ['Toronto', 'Montreal', 'Winnipeg', 'Vancouver', 'Edmonton', 'North York',
 'Regina', 'St. John’s', 'Halifax', 'Ottawa']
 
@@ -12,20 +13,20 @@ demand = {'Toronto':2265, 'Montreal':1471, 'Winnipeg':300.2, 'Vancouver':991.1,
            'Edmonton':520.3, 'North York':217.9,'Regina':89.90, 'St. John’s':43.40, 
            'Halifax': 169.0, 'Ottawa': 529.2}
 
-fixed_cost = {'Saskatoon':22440,'Edmonton':22970, 'Calgary':19300, 'Hamilton':18620, 
+fixed_cost = {'Saskatoon':22440,'Edmonton':22970, 'Thunder Bay': 17580, 'Hamilton':18620, 
               'Moncton':17260,'Montreal':18180}
 
 rail_cost = {
     ('Waterloo', 'Saskatoon'): 11333.7,
     ('Waterloo', 'Edmonton'): 13660.9,
-    ('Waterloo', 'Calgary'): 13801.52,
+    ('Waterloo', 'Thunder Bay'): 5245,
     ('Waterloo', 'Hamilton'): 731.21,
     ('Waterloo', 'Moncton'): 6728.5,
     ('Waterloo', 'Montreal'): 2805.3,
 
     ('Kingston', 'Saskatoon'): 12395.35,
     ('Kingston', 'Edmonton'): 14715.52,
-    ('Kingston', 'Calgary'): 14856.14,
+    ('Kingston', 'Thunder Bay'):6383.99,
     ('Kingston', 'Hamilton'): 1406.17,
     ('Kingston', 'Moncton'): 5139.54,
     ('Kingston', 'Montreal'): 1216.33
@@ -54,16 +55,16 @@ truck_cost = {
     ('Edmonton', 'Halifax'): 15.3,
     ('Edmonton', 'Ottawa'): 10.8,
 
-    ('Calgary', 'Toronto'): 10.3,
-    ('Calgary', 'Montreal'): 11.5,
-    ('Calgary', 'Winnipeg'): 4.25,
-    ('Calgary', 'Vancouver'): 3.1,
-    ('Calgary', 'Edmonton'): 0.95,
-    ('Calgary', 'North York'): 10.3,
-    ('Calgary', 'Regina'): 2.41,
-    ('Calgary', 'St. John’s'): 18.3,
-    ('Calgary', 'Halifax'): 15.5,
-    ('Calgary', 'Ottawa'): 11.1,
+    ('Thunder Bay', 'Toronto'): 4.42,
+    ('Thunder Bay', 'Montreal'): 5.07,
+    ('Thunder Bay', 'Winnipeg'): 2.24,
+    ('Thunder Bay', 'Vancouver'): 9.6,
+    ('Thunder Bay', 'Edmonton'): 6.42,
+    ('Thunder Bay', 'North York'): 4.4,
+    ('Thunder Bay', 'Regina'): 4.11,
+    ('Thunder Bay', 'St. John’s'): 11.83,
+    ('Thunder Bay', 'Halifax'): 9.01,
+    ('Thunder Bay', 'Ottawa'): 4.66,
 
     ('Hamilton', 'Toronto'): 0.22,
     ('Hamilton', 'Montreal'): 2.01,
