@@ -9,27 +9,27 @@ stores = ['Toronto', 'Montreal', 'Winnipeg', 'Vancouver', 'Edmonton', 'North Yor
 
 
 # Parameters
-demand = {'Toronto':2265, 'Montreal':1471, 'Winnipeg':300.2, 'Vancouver':1391.1,
-           'Edmonton':520.3, 'North York':217.9,'Regina':89.90, 'St. John’s':43.40, 
-           'Halifax': 569.0, 'Ottawa': 529.2}
+demand = {'Toronto':2265, 'Montreal':1471, 'Winnipeg':300.2, 'Vancouver':991.1,
+           'Edmonton': 520.3, 'North York':217.9,'Regina':89.90, 'St. John’s':43.40, 
+           'Halifax': 169.0, 'Ottawa': 529.2}
 
 fixed_cost = {'Saskatoon':22440,'Edmonton':22970, 'Thunder Bay': 17580, 'Hamilton':18620, 
               'Moncton':17260,'Montreal':18180}
 
 rail_cost = {
-    ('Waterloo', 'Saskatoon'): 11333.7,
-    ('Waterloo', 'Edmonton'): 13660.9,
-    ('Waterloo', 'Thunder Bay'): 5245,
-    ('Waterloo', 'Hamilton'): 731.21,
-    ('Waterloo', 'Moncton'): 6728.5,
-    ('Waterloo', 'Montreal'): 2805.3,
+    ('Waterloo', 'Saskatoon'): 3.44,
+    ('Waterloo', 'Edmonton'): 4.14,
+    ('Waterloo', 'Thunder Bay'): 1.59,
+    ('Waterloo', 'Hamilton'): 0.22,
+    ('Waterloo', 'Moncton'): 2.04,
+    ('Waterloo', 'Montreal'): 0.85,
 
-    ('Kingston', 'Saskatoon'): 12395.35,
-    ('Kingston', 'Edmonton'): 14715.52,
-    ('Kingston', 'Thunder Bay'):6383.99,
-    ('Kingston', 'Hamilton'): 1406.17,
-    ('Kingston', 'Moncton'): 5139.54,
-    ('Kingston', 'Montreal'): 1216.33
+    ('Kingston', 'Saskatoon'): 3.76,
+    ('Kingston', 'Edmonton'): 4.46,
+    ('Kingston', 'Thunder Bay'):1.94,
+    ('Kingston', 'Hamilton'): 0.43,
+    ('Kingston', 'Moncton'): 1.56,
+    ('Kingston', 'Montreal'): 0.37
 }
 
 truck_cost = {
@@ -69,7 +69,7 @@ truck_cost = {
     ('Hamilton', 'Toronto'): 0.22,
     ('Hamilton', 'Montreal'): 2.01,
     ('Hamilton', 'Winnipeg'): 6.27,
-    ('Hamilton', 'Vancouver'): 13.2,
+    ('Hamilton', 'Vancouver'): 3.2,
     ('Hamilton', 'Edmonton'): 10.3,
     ('Hamilton', 'North York'): 0.31,
     ('Hamilton', 'Regina'): 7.82,
@@ -114,6 +114,9 @@ model += (
     pulp.lpSum(truck_cost[i, j] * demand[j] * x[i, j] for i in dcs for j in stores) +
     pulp.lpSum(fixed_cost[i] * y[i] for i in dcs)
 )
+# for dc in dcs:
+#     if dc != "Edmonton":
+#         model += y[dc] == 0
 
 # Constraints
 # 1. Open only 2 DCs
