@@ -9,9 +9,9 @@ stores = ['Toronto', 'Montreal', 'Winnipeg', 'Vancouver', 'Edmonton', 'North Yor
 
 
 # Parameters
-demand = {'Toronto':2265, 'Montreal':1471, 'Winnipeg':300.2, 'Vancouver':991.1,
+demand = {'Toronto':2265, 'Montreal':1471, 'Winnipeg':300.2, 'Vancouver':1391.1,
            'Edmonton':520.3, 'North York':217.9,'Regina':89.90, 'St. John’s':43.40, 
-           'Halifax': 169.0, 'Ottawa': 529.2}
+           'Halifax': 569.0, 'Ottawa': 529.2}
 
 fixed_cost = {'Saskatoon':22440,'Edmonton':22970, 'Thunder Bay': 17580, 'Hamilton':18620, 
               'Moncton':17260,'Montreal':18180}
